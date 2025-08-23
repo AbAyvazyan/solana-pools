@@ -6,22 +6,36 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "setup:env": "cp env.example .env.local && echo 'Environment file created! Edit .env.local if needed.'",
+    "docker:build": "docker build -t solana-pools .",
+    "docker:run": "docker run -p 3000:3000 solana-pools",
+    "docker:compose": "docker-compose up --build",
+    "docker:test": "./scripts/docker-test.sh"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.3",
+    "@solana/web3.js": "^1.98.4",
+    "@tanstack/react-query": "^5.85.5",
+    "@tanstack/react-query-devtools": "^5.85.5",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.541.0",
+    "next": "15.5.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.0"
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "tw-animate-css": "^1.3.7",
+    "typescript": "^5"
   }
 }
