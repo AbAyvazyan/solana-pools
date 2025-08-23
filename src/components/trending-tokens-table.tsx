@@ -98,14 +98,20 @@ export function TrendingTokensTable() {
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <span>Trending Tokens</span>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 flex-nowrap">
             {prefetchingCount > 0 && (
               <Badge variant="outline" className="text-xs">
                 Prefetching {prefetchingCount} token{prefetchingCount > 1 ? 's' : ''}...
               </Badge>
             )}
             <Badge variant="secondary">
-              Auto-refresh every minute
+              <span className="hidden sm:inline">Auto-refresh every minute</span>
+              <span className="sm:hidden flex items-center">
+                <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                1 min
+              </span>
             </Badge>
           </div>
         </CardTitle>
@@ -114,13 +120,22 @@ export function TrendingTokensTable() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Rank</TableHead>
-              <TableHead>Token</TableHead>
-              <TableHead>Price</TableHead>
-              <TableHead>24h Change</TableHead>
-              <TableHead>Market Cap</TableHead>
-              <TableHead>Volume (24h)</TableHead>
-              <TableHead>Actions</TableHead>
+              <TableHead className="w-16">Rank</TableHead>
+              <TableHead className="w-48">Token</TableHead>
+              <TableHead className="w-24">Price</TableHead>
+              <TableHead className="w-28">
+                <span className="hidden sm:inline">24h Change</span>
+                <span className="sm:hidden">24h</span>
+              </TableHead>
+              <TableHead className="w-32">
+                <span className="hidden sm:inline">Market Cap</span>
+                <span className="sm:hidden">Mkt Cap</span>
+              </TableHead>
+              <TableHead className="w-32">
+                <span className="hidden sm:inline">Volume (24h)</span>
+                <span className="sm:hidden">Volume</span>
+              </TableHead>
+              <TableHead className="w-24">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -134,7 +149,7 @@ export function TrendingTokensTable() {
                     #{token.market_cap_rank || index + 1}
                   </TableCell>
                   <TableCell>
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 min-w-0 flex-nowrap">
                       <Image
                         src={token.thumb || '/placeholder-coin.svg'}
                         alt={token.name || 'Token'}
@@ -147,9 +162,9 @@ export function TrendingTokensTable() {
                           target.src = '/placeholder-coin.svg'
                         }}
                       />
-                      <div>
-                        <div className="font-medium">{token.name || 'Unknown Token'}</div>
-                        <div className="text-sm text-gray-500">{(token.symbol || 'UNKNOWN').toUpperCase()}</div>
+                      <div className="min-w-0 flex-1">
+                        <div className="font-medium truncate">{token.name || 'Unknown Token'}</div>
+                        <div className="text-sm text-gray-500 truncate">{(token.symbol || 'UNKNOWN').toUpperCase()}</div>
                       </div>
                     </div>
                   </TableCell>
@@ -184,10 +199,14 @@ export function TrendingTokensTable() {
                         {isPrefetchingToken ? (
                           <>
                             <div className="animate-spin rounded-full h-3 w-3 border-b border-current mr-2"></div>
-                            Loading...
+                            <span className="hidden sm:inline">Loading...</span>
+                            <span className="sm:hidden">Load</span>
                           </>
                         ) : (
-                          'View Details'
+                          <>
+                            <span className="hidden sm:inline">View Details</span>
+                            <span className="sm:hidden">Details</span>
+                          </>
                         )}
                       </Button>
                     </Link>

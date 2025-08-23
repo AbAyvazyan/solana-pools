@@ -10,12 +10,12 @@ import { Button } from '@/components/ui/button'
 import { ArrowLeft, TrendingUp, TrendingDown } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { 
-  formatPrice, 
-  formatMarketCap, 
-  formatVolume, 
-  formatSupply, 
-  formatPriceChange 
+import {
+  formatPrice,
+  formatMarketCap,
+  formatVolume,
+  formatSupply,
+  formatPriceChange
 } from '@/lib/utils/formatters'
 
 interface TokenDetailsProps {
@@ -48,8 +48,8 @@ export function TokenDetails({ symbol }: TokenDetailsProps) {
         <div className="container mx-auto px-4 py-8">
           <div className="space-y-6">
             {/* Header with loading state */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
+            <div className="flex items-center justify-between w-full flex-col sm:flex-row gap-4 sm:gap-0">
+            <div className="flex items-center space-x-4 flex-nowrap flex-col sm:flex-row gap-2 sm:gap-4">
                 <Link href="/" prefetch={true}>
                   <Button variant="outline" size="sm">
                     <ArrowLeft className="h-4 w-4 mr-2" />
@@ -176,8 +176,8 @@ export function TokenDetails({ symbol }: TokenDetailsProps) {
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           {/* Header */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+          <div className="flex items-center justify-between w-full flex-col sm:flex-row gap-4 sm:gap-0">
+            <div className="flex items-center space-x-4 flex-nowrap flex-col sm:flex-row gap-2 sm:gap-4">
               <Link href="/" prefetch={true}>
                 <Button variant="outline" size="sm">
                   <ArrowLeft className="h-4 w-4 mr-2" />
@@ -206,7 +206,13 @@ export function TokenDetails({ symbol }: TokenDetailsProps) {
               </div>
             </div>
             <Badge variant="secondary">
-              Auto-refresh every minute
+              <span className="hidden sm:inline">Auto-refresh every minute</span>
+              <span className="sm:hidden flex items-center">
+                <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                1 min
+              </span>
             </Badge>
           </div>
 
@@ -218,7 +224,7 @@ export function TokenDetails({ symbol }: TokenDetailsProps) {
             <CardContent>
               <div className="flex items-center space-x-4">
                 <div className="text-3xl font-bold">{formatPrice(token.price)}</div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 flex-nowrap">
                   {isPricePositive ? (
                     <TrendingUp className="h-5 w-5 text-green-600" />
                   ) : (
@@ -284,14 +290,14 @@ export function TokenDetails({ symbol }: TokenDetailsProps) {
               <div className="flex space-x-4">
                 {['btc', 'eth', 'sol'].map(relatedSymbol => (
                   relatedSymbol !== symbol.toLowerCase() && (
-                    <Link 
+                    <Link
                       key={relatedSymbol}
                       href={`/token/${relatedSymbol}`}
                       prefetch={true}
                       onMouseEnter={() => prefetchToken(relatedSymbol)}
                     >
-                      <Button 
-                        variant="outline" 
+                      <Button
+                        variant="outline"
                         size="sm"
                         disabled={isPrefetching(relatedSymbol)}
                         className={isPrefetching(relatedSymbol) ? 'opacity-75' : ''}
