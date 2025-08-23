@@ -1,9 +1,9 @@
-import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import { Providers } from '@/lib/providers'
+import type { Metadata, Viewport } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { Providers } from '@/lib/providers';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -11,12 +11,14 @@ export const viewport: Viewport = {
   maximumScale: 1,
   themeColor: '#9945FF',
   colorScheme: 'dark light',
-}
+};
 
 export const metadata: Metadata = {
   title: 'Solana Pools - Real-time Token Analytics',
-  description: 'Track trending Solana tokens, view real-time prices, market caps, and token metadata. Built with Next.js and powered by Solana RPC, Raydium, and CoinGecko APIs.',
-  keywords: 'Solana, cryptocurrency, tokens, DeFi, blockchain, crypto analytics, token prices, market cap, Raydium, CoinGecko',
+  description:
+    'Track trending Solana tokens, view real-time prices, market caps, and token metadata. Built with Next.js and powered by Solana RPC, Raydium, and CoinGecko APIs.',
+  keywords:
+    'Solana, cryptocurrency, tokens, DeFi, blockchain, crypto analytics, token prices, market cap, Raydium, CoinGecko',
   authors: [{ name: 'Solana Pools Team' }],
   creator: 'Solana Pools',
   publisher: 'Solana Pools',
@@ -25,13 +27,16 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+  ),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'Solana Pools - Real-time Token Analytics',
-    description: 'Track trending Solana tokens, view real-time prices, market caps, and token metadata.',
+    description:
+      'Track trending Solana tokens, view real-time prices, market caps, and token metadata.',
     url: '/',
     siteName: 'Solana Pools',
     images: [
@@ -48,7 +53,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Solana Pools - Real-time Token Analytics',
-    description: 'Track trending Solana tokens, view real-time prices, market caps, and token metadata.',
+    description:
+      'Track trending Solana tokens, view real-time prices, market caps, and token metadata.',
     images: ['/solana-pools-og.svg'],
     creator: '@solanapools',
   },
@@ -67,18 +73,16 @@ export const metadata: Metadata = {
     google: 'your-google-verification-code',
   },
   icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-    ],
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
     shortcut: '/favicon.svg',
   },
   manifest: '/site.webmanifest',
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -89,10 +93,8 @@ export default function RootLayout({
         <meta name="theme-color" content="#9945FF" />
       </head>
       <body className={inter.className}>
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
-  )
+  );
 }

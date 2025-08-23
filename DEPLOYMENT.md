@@ -5,6 +5,7 @@
 This is a complete Next.js application for tracking trending Solana tokens with real-time data updates. The application meets all the requirements specified in the task:
 
 ### ✅ Part #1: Homepage with Trending Tokens
+
 - **CoinGecko API Integration**: Fetches trending tokens using the CoinGecko API
 - **Data Table**: Beautiful shadcn/ui table showing at least 20 tokens
 - **Auto-refresh**: Updates data every minute using TanStack Query
@@ -12,6 +13,7 @@ This is a complete Next.js application for tracking trending Solana tokens with 
 - **Responsive Design**: Works on all device sizes
 
 ### ✅ Part #2: Dynamic Token Pool Pages
+
 - **Token Details**: Comprehensive token information display
 - **Solana RPC Integration**: Fetches token metadata from Solana blockchain
 - **Raydium API**: Gets price and market cap data
@@ -19,6 +21,7 @@ This is a complete Next.js application for tracking trending Solana tokens with 
 - **Beautiful UI**: Modern design with cards, badges, and icons
 
 ### ✅ Part #3: Dockerization & Deployment
+
 - **Dockerfile**: Production-ready containerization
 - **Docker Compose**: Easy development and testing
 - **Health Checks**: Container monitoring
@@ -27,6 +30,7 @@ This is a complete Next.js application for tracking trending Solana tokens with 
 ## 🚀 Quick Start
 
 ### Local Development
+
 ```bash
 # Clone and setup
 git clone <repository-url>
@@ -38,6 +42,7 @@ npm run dev
 ```
 
 ### Docker Deployment
+
 ```bash
 # Using Docker Compose (recommended)
 npm run docker:compose
@@ -79,7 +84,9 @@ solana-pools/
 ## 🔧 Configuration
 
 ### Environment Variables
+
 Create a `.env.local` file:
+
 ```env
 NEXT_PUBLIC_COINGECKO_API_URL=https://api.coingecko.com/api/v3
 NEXT_PUBLIC_SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
@@ -89,6 +96,7 @@ NEXT_PUBLIC_APP_DESCRIPTION=Track trending Solana pools and token information
 ```
 
 ### API Endpoints
+
 - `GET /api/trending` - Trending Solana tokens
 - `GET /api/token/[symbol]` - Token details by symbol
 
@@ -106,18 +114,21 @@ NEXT_PUBLIC_APP_DESCRIPTION=Track trending Solana pools and token information
 ## 📊 Features
 
 ### Real-time Data
+
 - Auto-refresh every minute
 - Background updates with TanStack Query
 - Optimistic UI updates
 - Error handling and retry mechanisms
 
 ### User Experience
+
 - Loading states and error boundaries
 - Responsive design
 - Beautiful modern UI
 - Smooth navigation
 
 ### Performance
+
 - Server-side rendering
 - Optimized images
 - Efficient data caching
@@ -143,6 +154,7 @@ docker system prune -f
 ## 🔄 CI/CD Pipeline
 
 The GitHub Actions workflow automatically:
+
 1. Runs tests and linting
 2. Builds the application
 3. Tests Docker build
@@ -151,6 +163,7 @@ The GitHub Actions workflow automatically:
 ## 📝 API Documentation
 
 ### Trending Tokens
+
 ```typescript
 GET /api/trending
 Response: {
@@ -161,56 +174,62 @@ Response: {
 ```
 
 ### Token Details
+
 ```typescript
-GET /api/token/[symbol]
+GET / api / token / [symbol];
 Response: {
-  success: boolean
+  success: boolean;
   data: {
-    id: string
-    name: string
-    symbol: string
-    price: number
-    marketCap: number
-    volume24h: number
-    priceChange24h: number
-    priceChangePercent24h: number
+    id: string;
+    name: string;
+    symbol: string;
+    price: number;
+    marketCap: number;
+    volume24h: number;
+    priceChange24h: number;
+    priceChangePercent24h: number;
     solana: {
-      name: string
-      symbol: string
-      supply: number
-      decimals: number
+      name: string;
+      symbol: string;
+      supply: number;
+      decimals: number;
     }
   }
-  timestamp: string
+  timestamp: string;
 }
 ```
 
 ## 🎨 Customization
 
 ### Adding New APIs
+
 1. Create service in `src/lib/api/`
 2. Add to API routes in `src/app/api/`
 3. Create custom hook in `src/lib/hooks/`
 4. Update components to use new data
 
 ### Styling
+
 - Uses Tailwind CSS for styling
 - shadcn/ui components for consistency
 - Easy to customize with CSS variables
 
 ### Environment Configuration
+
 - All API endpoints configurable via environment variables
 - Easy to switch between development and production
 
 ## 🚀 Deployment Options
 
 ### Vercel (Recommended)
+
 ```bash
 npm install -g vercel
 vercel --prod
 ```
 
 ### Docker Hosting
+
 ```bash
 # Build and push to registry
 docker build -t your-registry/solana-pools .
@@ -220,6 +239,7 @@ docker push your-registry/solana-pools
 ```
 
 ### Traditional Hosting
+
 ```bash
 npm run build
 npm run start
@@ -228,11 +248,13 @@ npm run start
 ## 📈 Monitoring
 
 ### Health Checks
+
 - Docker health check endpoint
 - API status monitoring
 - Error logging and reporting
 
 ### Performance
+
 - Bundle size optimization
 - Image optimization
 - Caching strategies
@@ -247,6 +269,7 @@ npm run start
 ## 📞 Support
 
 For issues or questions:
+
 1. Check the README.md
 2. Review API documentation
 3. Check GitHub Issues

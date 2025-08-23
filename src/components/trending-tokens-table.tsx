@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import Image from 'next/image'
-import { useTrendingTokens } from '@/lib/hooks/useTrendingTokens'
-import { usePrefetch } from '@/lib/hooks/usePrefetch'
-import { useQueryClient } from '@tanstack/react-query'
-import { useEffect } from 'react'
+import Link from 'next/link';
+import Image from 'next/image';
+import { useTrendingTokens } from '@/lib/hooks/useTrendingTokens';
+import { usePrefetch } from '@/lib/hooks/usePrefetch';
+import { useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import {
   Table,
   TableBody,
@@ -13,39 +13,42 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { 
-  formatPrice, 
-  formatMarketCap, 
-  formatVolume, 
-  formatPriceChange 
-} from '@/lib/utils/formatters'
+} from '@/components/ui/table';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  formatPrice,
+  formatMarketCap,
+  formatVolume,
+  formatPriceChange,
+} from '@/lib/utils/formatters';
 
 export function TrendingTokensTable() {
-  const { data: tokens, isLoading, error } = useTrendingTokens()
-  const queryClient = useQueryClient()
-  const { prefetchToken, isPrefetching, prefetchingCount } = usePrefetch()
+  const { data: tokens, isLoading, error } = useTrendingTokens();
+  const queryClient = useQueryClient();
+  const { prefetchToken, isPrefetching, prefetchingCount } = usePrefetch();
 
   // Prefetch top 3 tokens immediately when table loads
   useEffect(() => {
     if (tokens && tokens.length > 0) {
-      const topTokens = tokens.slice(0, 3) // Prefetch top 3 tokens
+      const topTokens = tokens.slice(0, 3); // Prefetch top 3 tokens
       topTokens.forEach(token => {
         if (token.symbol) {
-          const tokenSymbol = token.symbol.toLowerCase()
+          const tokenSymbol = token.symbol.toLowerCase();
           // Only prefetch if not already cached
-          const cachedData = queryClient.getQueryData(['token-data', tokenSymbol])
+          const cachedData = queryClient.getQueryData([
+            'token-data',
+            tokenSymbol,
+          ]);
           if (!cachedData) {
             // Prefetch immediately without delay
-            prefetchToken(token.symbol)
+            prefetchToken(token.symbol);
           }
         }
-      })
+      });
     }
-  }, [tokens, queryClient, prefetchToken])
+  }, [tokens, queryClient, prefetchToken]);
 
   if (isLoading) {
     return (
@@ -60,7 +63,7 @@ export function TrendingTokensTable() {
           </div>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   if (error) {
@@ -75,7 +78,7 @@ export function TrendingTokensTable() {
           </div>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   if (!tokens || tokens.length === 0) {
@@ -90,7 +93,7 @@ export function TrendingTokensTable() {
           </div>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   return (
@@ -101,14 +104,27 @@ export function TrendingTokensTable() {
           <div className="flex items-center space-x-2 flex-nowrap">
             {prefetchingCount > 0 && (
               <Badge variant="outline" className="text-xs">
-                Prefetching {prefetchingCount} token{prefetchingCount > 1 ? 's' : ''}...
+                Prefetching {prefetchingCount} token
+                {prefetchingCount > 1 ? 's' : ''}...
               </Badge>
             )}
             <Badge variant="secondary">
-              <span className="hidden sm:inline">Auto-refresh every minute</span>
+              <span className="hidden sm:inline">
+                Auto-refresh every minute
+              </span>
               <span className="sm:hidden flex items-center">
-                <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                <svg
+                  className="w-3 h-3 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
                 </svg>
                 1 min
               </span>
@@ -140,9 +156,9 @@ export function TrendingTokensTable() {
           </TableHeader>
           <TableBody>
             {tokens.map((token, index) => {
-              const tokenSymbol = (token.symbol || 'unknown').toLowerCase()
-              const isPrefetchingToken = isPrefetching(tokenSymbol)
-              
+              const tokenSymbol = (token.symbol || 'unknown').toLowerCase();
+              const isPrefetchingToken = isPrefetching(tokenSymbol);
+
               return (
                 <TableRow key={token.id || index}>
                   <TableCell className="font-medium">
@@ -156,15 +172,19 @@ export function TrendingTokensTable() {
                         width={24}
                         height={24}
                         className="rounded-full"
-                        onError={(e) => {
+                        onError={e => {
                           // Fallback to placeholder if image fails to load
-                          const target = e.target as HTMLImageElement
-                          target.src = '/placeholder-coin.svg'
+                          const target = e.target as HTMLImageElement;
+                          target.src = '/placeholder-coin.svg';
                         }}
                       />
                       <div className="min-w-0 flex-1">
-                        <div className="font-medium truncate">{token.name || 'Unknown Token'}</div>
-                        <div className="text-sm text-gray-500 truncate">{(token.symbol || 'UNKNOWN').toUpperCase()}</div>
+                        <div className="font-medium truncate">
+                          {token.name || 'Unknown Token'}
+                        </div>
+                        <div className="text-sm text-gray-500 truncate">
+                          {(token.symbol || 'UNKNOWN').toUpperCase()}
+                        </div>
                       </div>
                     </div>
                   </TableCell>
@@ -173,9 +193,15 @@ export function TrendingTokensTable() {
                   </TableCell>
                   <TableCell>
                     <Badge
-                      variant={(token.data?.price_change_percentage_24h?.usd || 0) >= 0 ? 'default' : 'destructive'}
+                      variant={
+                        (token.data?.price_change_percentage_24h?.usd || 0) >= 0
+                          ? 'default'
+                          : 'destructive'
+                      }
                     >
-                      {formatPriceChange(token.data?.price_change_percentage_24h?.usd || 0)}
+                      {formatPriceChange(
+                        token.data?.price_change_percentage_24h?.usd || 0
+                      )}
                     </Badge>
                   </TableCell>
                   <TableCell>
@@ -185,13 +211,15 @@ export function TrendingTokensTable() {
                     {formatVolume(token.data?.total_volume || '0')}
                   </TableCell>
                   <TableCell>
-                    <Link 
+                    <Link
                       href={`/token/${tokenSymbol}`}
                       prefetch={true}
-                      onMouseEnter={() => prefetchToken(token.symbol || 'unknown')}
+                      onMouseEnter={() =>
+                        prefetchToken(token.symbol || 'unknown')
+                      }
                     >
-                      <Button 
-                        variant="outline" 
+                      <Button
+                        variant="outline"
                         size="sm"
                         disabled={isPrefetchingToken}
                         className={isPrefetchingToken ? 'opacity-75' : ''}
@@ -204,7 +232,9 @@ export function TrendingTokensTable() {
                           </>
                         ) : (
                           <>
-                            <span className="hidden sm:inline">View Details</span>
+                            <span className="hidden sm:inline">
+                              View Details
+                            </span>
                             <span className="sm:hidden">Details</span>
                           </>
                         )}
@@ -212,11 +242,11 @@ export function TrendingTokensTable() {
                     </Link>
                   </TableCell>
                 </TableRow>
-              )
+              );
             })}
           </TableBody>
         </Table>
       </CardContent>
     </Card>
-  )
+  );
 }

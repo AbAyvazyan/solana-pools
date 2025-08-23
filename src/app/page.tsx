@@ -1,4 +1,4 @@
-import { TrendingTokensTable } from '@/components/trending-tokens-table'
+import { TrendingTokensTable } from '@/components/trending-tokens-table';
 
 export default function Home() {
   return (
@@ -12,9 +12,9 @@ export default function Home() {
             Track trending Solana tokens and their market performance
           </p>
         </div>
-        
+
         <TrendingTokensTable />
       </div>
     </div>
-  )
+  );
 }

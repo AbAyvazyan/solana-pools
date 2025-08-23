@@ -56,33 +56,37 @@ solana-pools/
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 - Git
 
 ### Local Development
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/AbAyvazyan/solana-pools.git
    cd solana-pools
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    # Copy the example environment file
    cp env.example .env.local
-   
+
    # Edit .env.local with your configuration (optional)
    # The defaults should work for most cases
    ```
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    ```
@@ -120,11 +124,13 @@ NEXT_PUBLIC_CACHE_DURATION=300000
 ### Docker Deployment
 
 1. **Build the Docker image**
+
    ```bash
    npm run docker:build
    ```
 
 2. **Run with Docker Compose**
+
    ```bash
    npm run docker:compose
    ```
@@ -137,10 +143,12 @@ NEXT_PUBLIC_CACHE_DURATION=300000
 ## 📡 API Endpoints
 
 ### Trending Tokens
+
 - **GET** `/api/trending`
 - Returns trending Solana tokens from CoinGecko API
 
 ### Individual Token Data
+
 - **GET** `/api/token/[symbol]`
 - Returns comprehensive token data from multiple sources:
   - Solana metadata (name, symbol, supply, decimals)
@@ -150,7 +158,7 @@ NEXT_PUBLIC_CACHE_DURATION=300000
 ## 🔄 Data Flow
 
 1. **Homepage**: Fetches trending tokens from CoinGecko API
-2. **Token Details**: 
+2. **Token Details**:
    - Looks up mint address from Jupiter Token List
    - Fetches Solana metadata from Solana RPC
    - Gets price data from Raydium API

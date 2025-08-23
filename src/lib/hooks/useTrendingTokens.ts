@@ -1,20 +1,20 @@
-import { useQuery } from '@tanstack/react-query'
-import { CoinGeckoTrendingToken } from '@/lib/api/coingecko'
+import { useQuery } from '@tanstack/react-query';
+import { CoinGeckoTrendingToken } from '@/lib/api/coingecko';
 
 async function fetchTrendingTokens(): Promise<CoinGeckoTrendingToken[]> {
-  const response = await fetch('/api/trending')
-  
+  const response = await fetch('/api/trending');
+
   if (!response.ok) {
-    throw new Error('Failed to fetch trending tokens')
+    throw new Error('Failed to fetch trending tokens');
   }
-  
-  const data = await response.json()
-  
+
+  const data = await response.json();
+
   if (!data.success) {
-    throw new Error(data.error || 'Failed to fetch trending tokens')
+    throw new Error(data.error || 'Failed to fetch trending tokens');
   }
-  
-  return data.data
+
+  return data.data;
 }
 
 export function useTrendingTokens() {
@@ -23,5 +23,5 @@ export function useTrendingTokens() {
     queryFn: fetchTrendingTokens,
     refetchInterval: 60 * 1000, // Refetch every minute
     staleTime: 60 * 1000, // Consider data stale after 1 minute
-  })
+  });
 }

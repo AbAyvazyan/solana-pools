@@ -1,13 +1,15 @@
-import { Metadata } from 'next'
-import { TokenDetails } from '@/components/token-details'
+import { Metadata } from 'next';
+import { TokenDetails } from '@/components/token-details';
 
 interface TokenPageProps {
-  params: Promise<{ symbol: string }>
+  params: Promise<{ symbol: string }>;
 }
 
-export async function generateMetadata({ params }: TokenPageProps): Promise<Metadata> {
-  const { symbol } = await params
-  
+export async function generateMetadata({
+  params,
+}: TokenPageProps): Promise<Metadata> {
+  const { symbol } = await params;
+
   return {
     title: `${symbol.toUpperCase()} Token - Solana Pools`,
     description: `View real-time price, market cap, volume, and Solana metadata for ${symbol.toUpperCase()} token. Track ${symbol.toUpperCase()} performance with live data from Solana RPC, Raydium, and CoinGecko APIs.`,
@@ -34,11 +36,11 @@ export async function generateMetadata({ params }: TokenPageProps): Promise<Meta
     alternates: {
       canonical: `/token/${symbol.toLowerCase()}`,
     },
-  }
+  };
 }
 
 export default async function TokenPage({ params }: TokenPageProps) {
-  const { symbol } = await params
-  
-  return <TokenDetails symbol={symbol} />
+  const { symbol } = await params;
+
+  return <TokenDetails symbol={symbol} />;
 }
