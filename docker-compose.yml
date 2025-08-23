@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  solana-pools:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      # Solana Configuration
+      - NEXT_PUBLIC_SOLANA_RPC_URL=${NEXT_PUBLIC_SOLANA_RPC_URL:-https://api.mainnet-beta.solana.com}
+      # Jupiter Token List API
+      - NEXT_PUBLIC_JUPITER_TOKEN_LIST_URL=${NEXT_PUBLIC_JUPITER_TOKEN_LIST_URL:-https://token.jup.ag/all}
+      # Raydium API
+      - NEXT_PUBLIC_RAYDIUM_API_URL=${NEXT_PUBLIC_RAYDIUM_API_URL:-https://api-v3.raydium.io}
+      - NEXT_PUBLIC_RAYDIUM_PRICE_ENDPOINT=${NEXT_PUBLIC_RAYDIUM_PRICE_ENDPOINT:-/mint/price}
+      # CoinGecko API
+      - NEXT_PUBLIC_COINGECKO_API_URL=${NEXT_PUBLIC_COINGECKO_API_URL:-https://api.coingecko.com/api/v3}
+      - NEXT_PUBLIC_COINGECKO_TRENDING_ENDPOINT=${NEXT_PUBLIC_COINGECKO_TRENDING_ENDPOINT:-/search/trending}
+      - NEXT_PUBLIC_COINGECKO_SIMPLE_PRICE_ENDPOINT=${NEXT_PUBLIC_COINGECKO_SIMPLE_PRICE_ENDPOINT:-/simple/price}
+      # Application Configuration
+      - NEXT_PUBLIC_APP_NAME=${NEXT_PUBLIC_APP_NAME:-Solana Pools}
+      - NEXT_PUBLIC_APP_DESCRIPTION=${NEXT_PUBLIC_APP_DESCRIPTION:-Real-time Solana token information and trending pools}
+      - NEXT_PUBLIC_AUTO_REFRESH_INTERVAL=${NEXT_PUBLIC_AUTO_REFRESH_INTERVAL:-60000}
+      - NEXT_PUBLIC_CACHE_DURATION=${NEXT_PUBLIC_CACHE_DURATION:-300000}
+    env_file:
+      - .env.local
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/trending"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
