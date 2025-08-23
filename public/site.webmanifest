@@ -1,0 +1,21 @@
+{
+  "name": "Solana Pools - Real-time Token Analytics",
+  "short_name": "Solana Pools",
+  "description": "Track trending Solana tokens, view real-time prices, market caps, and token metadata",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#9945FF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "productivity"],
+  "lang": "en",
+  "scope": "/"
+}

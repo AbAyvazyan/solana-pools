@@ -1,0 +1,62 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#000000"/>
+  
+  <!-- Gradient overlay -->
+  <rect width="1200" height="630" fill="url(#gradient)"/>
+  
+  <!-- Solana logo pattern -->
+  <g opacity="0.1">
+    <path d="M100 100L200 50L300 100L200 150L100 100Z" fill="#9945FF"/>
+    <path d="M100 200L200 150L300 200L200 250L100 200Z" fill="#9945FF"/>
+    <path d="M300 100L200 150L100 100L200 50L300 100Z" fill="#9945FF" opacity="0.8"/>
+    <path d="M300 200L200 250L100 200L200 150L300 200Z" fill="#9945FF" opacity="0.8"/>
+    
+    <path d="M900 400L1000 350L1100 400L1000 450L900 400Z" fill="#9945FF"/>
+    <path d="M900 500L1000 450L1100 500L1000 550L900 500Z" fill="#9945FF"/>
+    <path d="M1100 400L1000 450L900 400L1000 350L1100 400Z" fill="#9945FF" opacity="0.8"/>
+    <path d="M1100 500L1000 550L900 500L1000 450L1100 500Z" fill="#9945FF" opacity="0.8"/>
+  </g>
+  
+  <!-- Main content -->
+  <g transform="translate(100, 200)">
+    <!-- Title -->
+    <text x="0" y="60" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white">
+      Solana Pools
+    </text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="120" font-family="Arial, sans-serif" font-size="32" fill="#CCCCCC">
+      Real-time Token Analytics
+    </text>
+    
+    <!-- Features -->
+    <text x="0" y="180" font-family="Arial, sans-serif" font-size="24" fill="#9945FF">
+      • Trending Tokens
+    </text>
+    <text x="0" y="220" font-family="Arial, sans-serif" font-size="24" fill="#9945FF">
+      • Live Prices & Market Data
+    </text>
+    <text x="0" y="260" font-family="Arial, sans-serif" font-size="24" fill="#9945FF">
+      • Solana RPC Integration
+    </text>
+  </g>
+  
+  <!-- Solana logo in corner -->
+  <g transform="translate(1000, 50)">
+    <rect width="100" height="100" rx="12" fill="#9945FF"/>
+    <path d="M25 32.5L50 18.75L75 32.5L50 46.25L25 32.5Z" fill="white"/>
+    <path d="M25 67.5L50 53.75L75 67.5L50 81.25L25 67.5Z" fill="white"/>
+    <path d="M75 32.5L50 46.25L25 32.5L50 18.75L75 32.5Z" fill="white" opacity="0.8"/>
+    <path d="M75 67.5L50 81.25L25 67.5L50 53.75L75 67.5Z" fill="white" opacity="0.8"/>
+  </g>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
