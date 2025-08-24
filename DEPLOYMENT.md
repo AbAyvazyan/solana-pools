@@ -7,7 +7,7 @@ This is a complete Next.js application for tracking trending Solana tokens with 
 ### ✅ Part #1: Homepage with Trending Tokens
 
 - **CoinGecko API Integration**: Fetches trending tokens using the CoinGecko API
-- **Data Table**: Beautiful shadcn/ui table showing at least 20 tokens
+- **Data Table**: Beautiful shadcn/ui table showing trending tokens
 - **Auto-refresh**: Updates data every minute using TanStack Query
 - **Navigation**: Links to individual token pages
 - **Responsive Design**: Works on all device sizes
@@ -90,7 +90,7 @@ Create a `.env.local` file:
 ```env
 NEXT_PUBLIC_COINGECKO_API_URL=https://api.coingecko.com/api/v3
 NEXT_PUBLIC_SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
-NEXT_PUBLIC_RAYDIUM_API_URL=https://api.raydium.io/v2
+NEXT_PUBLIC_RAYDIUM_API_URL=https://api-v3.raydium.io
 NEXT_PUBLIC_APP_NAME=Solana Pools
 NEXT_PUBLIC_APP_DESCRIPTION=Track trending Solana pools and token information
 ```
@@ -155,7 +155,7 @@ docker system prune -f
 
 The GitHub Actions workflow automatically:
 
-1. Runs tests and linting
+1. Runs linting and type checking
 2. Builds the application
 3. Tests Docker build
 4. Deploys to Docker Hub (on main branch)
@@ -169,7 +169,6 @@ GET /api/trending
 Response: {
   success: boolean
   data: CoinGeckoTrendingToken[]
-  timestamp: string
 }
 ```
 
@@ -178,24 +177,20 @@ Response: {
 ```typescript
 GET / api / token / [symbol];
 Response: {
-  success: boolean;
-  data: {
-    id: string;
+  id: string;
+  name: string;
+  symbol: string;
+  price: number;
+  marketCap: number;
+  volume24h: number;
+  priceChange24h: number;
+  priceChangePercent24h: number;
+  solana: {
     name: string;
     symbol: string;
-    price: number;
-    marketCap: number;
-    volume24h: number;
-    priceChange24h: number;
-    priceChangePercent24h: number;
-    solana: {
-      name: string;
-      symbol: string;
-      supply: number;
-      decimals: number;
-    }
+    supply: number;
+    decimals: number;
   }
-  timestamp: string;
 }
 ```
 
@@ -255,26 +250,6 @@ npm run start
 
 ### Performance
 
-- Bundle size optimization
-- Image optimization
-- Caching strategies
-
-## 🔒 Security
-
-- Environment variable protection
-- API rate limiting (can be added)
-- Input validation
-- Error sanitization
-
-## 📞 Support
-
-For issues or questions:
-
-1. Check the README.md
-2. Review API documentation
-3. Check GitHub Issues
-4. Create a new issue with details
-
----
-
-**Built with ❤️ using Next.js, shadcn/ui, and TanStack Query**
+- Build optimization
+- Bundle analysis
+- Runtime monitoring

@@ -36,7 +36,8 @@ solana-pools/
 │   │   └── page.tsx           # Homepage
 │   ├── components/            # React components
 │   │   ├── trending-tokens-table.tsx
-│   │   └── token-details.tsx
+│   │   ├── token-details.tsx
+│   │   └── ui/               # shadcn/ui components
 │   ├── lib/                   # Utilities and API clients
 │   │   ├── api/              # API integration
 │   │   │   ├── coingecko.ts  # CoinGecko API
@@ -44,8 +45,8 @@ solana-pools/
 │   │   │   └── solana.ts     # Solana RPC
 │   │   ├── hooks/            # Custom React hooks
 │   │   ├── utils/            # Utility functions
-│   │   └── constants/        # Mock data and constants
-│   └── providers.tsx         # TanStack Query provider
+│   │   ├── constants/        # Constants and configuration
+│   │   └── providers.tsx     # TanStack Query provider
 ├── public/                   # Static assets
 ├── Dockerfile               # Docker configuration
 ├── docker-compose.yml       # Docker Compose
@@ -181,17 +182,29 @@ npm run docker:compose
 npm run docker:test
 ```
 
-## 🧪 Testing
+## 🧪 Development Commands
 
 ```bash
-# Run tests
-npm test
+# Run linter
+npm run lint
 
-# Run tests in watch mode
-npm run test:watch
+# Fix linting issues
+npm run lint:fix
 
-# Run tests with coverage
-npm run test:coverage
+# Format code
+npm run format
+
+# Check formatting
+npm run format:check
+
+# Type checking
+npm run type-check
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
 ## 📦 Build
@@ -214,7 +227,7 @@ npm start
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## 🙏 Acknowledgments
 
